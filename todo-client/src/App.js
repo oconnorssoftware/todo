@@ -87,16 +87,54 @@ class ToDo extends React.Component {
   }
 
   addToDo () {
-    this.setState(() => ({
+    // this.setState(() => ({
+    //       todos: [...this.state.todos, this.state.todoinput]
+    //   }))
+    let config = {
+      headers: {
+        "Authorization": "Token "+getCookie("Auth")
+      }
+    }
+    axios.post('coreback/todo/',{ntodo:this.state.todoinput},config
+      ).then((response) => {
+      // handle success
+      console.log(response);
+      this.setState(() => ({
+          todos: response.data.todos
+      }))
+      this.setState(() => ({
           todoinput: ""
       }))
-    this.setState(() => ({
-          todos: [...this.state.todos, this.state.todoinput]
-      }))
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);  
+    })
+
   }
+  componentDidMount (){
+    let config = {
+      headers: {
+        "Authorization": "Token "+getCookie("Auth")
+      }
+    }
+    axios.get('coreback/todo/',config
+      ).then((response) => {
+      // handle success
+      console.log(response);
+      this.setState(() => ({
+          todos: response.data.todos
+      }))
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);  
+    })
+  }
+
   render() {
     return (<div>
-              this.state.todos<br/>
+              <br/>
               Todo:<input type="text" value={this.state.todoinput} name="todoinput" onChange={this.handleChange} /><br/>
               <button onClick={this.addToDo}>Add</button>
               <ul>
