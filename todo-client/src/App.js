@@ -327,10 +327,10 @@ class Login extends React.Component {
   }
   logout (){
 
-    axios.post('coreback/rest-auth/logout/',
+    axios.post('coreback/logout/',{},
       {
         headers: { 
-          "Authorization": "Bearer " + getCookie("Auth")
+          "Authorization": "Token " + getCookie("Auth")
          }
       }
       ).then((response) => {
