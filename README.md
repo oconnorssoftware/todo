@@ -1,4 +1,5 @@
-This is a simple todo application using pyhton/django and reactjs
+This is a work in process many changes to come
+This is a simple todo application using python/django and reactjs
 
 To Run Backend:
 <br>
