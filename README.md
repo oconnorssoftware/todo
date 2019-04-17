@@ -1,1 +1,1 @@
-# todo
+This is a simple todo application using pyhton/django and reactjs
