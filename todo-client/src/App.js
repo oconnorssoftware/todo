@@ -1,9 +1,5 @@
 import React from 'react'
 import axios from 'axios';
-import Typography from '@material-ui/core/Typography';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
-import useTodoState from './useTodoState';
 axios.defaults.baseURL = "http://127.0.0.1:8000/";//URL to django back end
 
 function getCookie(cname) {
@@ -27,44 +23,6 @@ function setCookie(cname, cvalue, exdays) {
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-const ToDoContainer = () => {
-  const { todos, addTodo, deleteTodo } = useTodoState([]);
-
-  return (
-    <div className="App">
-      <Typography component="h1" variant="h2">
-        Todos
-      </Typography>
-
-      <TodoForm
-        saveTodo={todoText => {
-          const trimmedText = todoText.trim();
-
-          if (trimmedText.length > 0) {
-            addTodo(trimmedText);
-          }
-        }}
-      />
-
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
-    </div>
-  );
-};
-
-class ToDoItem extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-
-    }
-    
-  };
-
-  render() {
-    return (<h1>TODO {this.props.name}</h1>)
-  }  
 }
 
 function Item(props) {
